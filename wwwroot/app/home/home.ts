@@ -1,6 +1,5 @@
-import {Component} from 'angular2/core';
-import {Router} from 'angular2/router';
-//import {Routes} from '../routes.config';
+import { Component } from 'angular2/core';
+import { Router } from 'angular2/router';
 
 @Component({
 	selector: 'home',
@@ -8,12 +7,14 @@ import {Router} from 'angular2/router';
     directives: []
 })
 export class Home{
-
 	constructor(private _router: Router) {
 	}
 
-    goToPeople(){
+    goToPeople() {
         this._router.navigate(['People', {}]);
     }
 
+    goToCharacters() {
+        this._router.navigate(['Characters', {}]);
+    }
 }

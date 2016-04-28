@@ -19,6 +19,7 @@ namespace CleanShave
                 //.SetBasePath(appEnv.ApplicationBasePath)
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
+
             Configuration = builder.Build();
         }
 
@@ -27,29 +28,26 @@ namespace CleanShave
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           services.AddGlimpse();
+            services.AddGlimpse();
 
-          services.Configure<SiteSettings>(settings =>
-            {
-
-            });
+            services.Configure<SiteSettings>(settings => {});
 
             // Add MVC services to the services container.
             services.AddMvc().AddJsonOptions(options =>
-                  {
-                      options.SerializerSettings.ContractResolver =
-                          new CamelCasePropertyNamesContractResolver();
-                  });
+            {
+                options.SerializerSettings.ContractResolver =
+                new CamelCasePropertyNamesContractResolver();
+            });
         }
-
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
             app.UseGlimpse();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -60,18 +58,17 @@ namespace CleanShave
             }
 
             app.UseIISPlatformHandler();
-
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                );
 
                 // 404 routingfor SPA
                 routes.MapRoute("spa-fallback", "{*anything}", new { controller = "Home", action = "Index" });
-
             });
         }
     }

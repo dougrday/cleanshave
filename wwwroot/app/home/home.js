@@ -21,7 +21,6 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                 router_1 = router_1_1;
             }],
         execute: function() {
-            //import {Routes} from '../routes.config';
             Home = (function () {
                 function Home(_router) {
                     this._router = _router;
@@ -29,12 +28,15 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                 Home.prototype.goToPeople = function () {
                     this._router.navigate(['People', {}]);
                 };
+                Home.prototype.goToCharacters = function () {
+                    this._router.navigate(['Characters', {}]);
+                };
                 Home = __decorate([
                     core_1.Component({
                         selector: 'home',
                         templateUrl: './app/home/home.html',
                         directives: []
-                    }), 
+                    }),
                     __metadata('design:paramtypes', [router_1.Router])
                 ], Home);
                 return Home;

@@ -1,6 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
 import {PeopleService} from './people.service';
 import {Person} from '../core/person';
+import { Api } from '../../services/Api';
 
 @Component({
     selector: 'people',
