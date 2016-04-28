@@ -11,7 +11,7 @@ System.register(['angular2/core', './Api'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, Api_1;
-    var characters, CharacterService;
+    var CharacterService;
     return {
         setters:[
             function (core_1_1) {
@@ -21,7 +21,6 @@ System.register(['angular2/core', './Api'], function(exports_1, context_1) {
                 Api_1 = Api_1_1;
             }],
         execute: function() {
-            characters = [{ "_id": "2", "isActive": true, "name": "Sven Killpatrick" }, { "_id": "1", "isActive": true, "name": "Simon the Vagabond" }, { "_id": "6", "isActive": true, "name": "Lt. Devin O'Reily" }, { "_id": "7", "isActive": true, "name": "Landriss the Bold" }, { "_id": "3", "isActive": true, "name": "Ogor" }, { "_id": "4", "isActive": true, "name": "Vyzcis" }];
             /**
              * A Character service, used to interaction with character data.
              */
@@ -30,20 +29,15 @@ System.register(['angular2/core', './Api'], function(exports_1, context_1) {
                     this._api = _api;
                 }
                 CharacterService.prototype.getCharacters = function () {
-                    return Promise.resolve(characters);
-                    // return this._api
-                    //     .get("http://nerdfest.servegame.com/characters")
-                    //     .fetch();
+                    //return Promise.resolve(characters);
+                    return this._api
+                        .get("/api/characters")
+                        .fetch();
                 };
                 CharacterService.prototype.getCharacter = function (id) {
-                    var character = characters.find(function (c) { return c._id === id; });
-                    if (character) {
-                        return Promise.resolve(character);
-                    }
-                    return Promise.reject();
-                    // return this._api
-                    //     .get(`http://nerdfest.servegame.com/character/${id}`)
-                    //     .fetch();
+                    return this._api
+                        .get("/api/character/" + id)
+                        .fetch();
                 };
                 CharacterService = __decorate([
                     core_1.Injectable(), 

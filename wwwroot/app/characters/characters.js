@@ -35,7 +35,7 @@ System.register(['angular2/core', 'angular2/router', '../services/Character', '.
                     _characterService
                         .getCharacters()
                         .then(function (res) {
-                        _this.characters = res;
+                        _this.characters = res.json;
                     });
                 }
                 Characters.prototype.goToCharacter = function (id) {

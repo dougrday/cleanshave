@@ -24,6 +24,8 @@ export class Character {
         // Retrieve the character data from the API
         _characterService
             .getCharacter(this.id)
-            .then(res => this.data = res);
+            .then(res => {
+                this.data = res.json;
+            });
     }
 }

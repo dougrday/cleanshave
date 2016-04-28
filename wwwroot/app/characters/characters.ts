@@ -17,7 +17,7 @@ export class Characters {
         _characterService
             .getCharacters()
             .then(res => {
-                this.characters = res;
+                this.characters = res.json;
             });
     }
 

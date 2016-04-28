@@ -37,7 +37,9 @@ System.register(['angular2/core', 'angular2/router', '../services/Character'], f
                     // Retrieve the character data from the API
                     _characterService
                         .getCharacter(this.id)
-                        .then(function (res) { return _this.data = res; });
+                        .then(function (res) {
+	                        _this.data = res.json;
+	                    });
                 }
                 __decorate([
                     core_1.Input(), 
